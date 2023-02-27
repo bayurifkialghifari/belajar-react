@@ -2,7 +2,7 @@ import { lazy } from "react"
 
 const lazyLoad = (path, namedExport) => {
   return lazy(() => {
-    const promise = import(`./${path}`)
+    const promise = import(`./${path}.jsx`)
     if (namedExport) {
       return promise.then(mod => ({
         default: mod[namedExport]
