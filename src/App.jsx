@@ -9,7 +9,7 @@ const Home = lazyLoad('container/Home')
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId="610751717845-04e14ie85a0qpd7ic7iko38ad18i2qpa.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_OAUTH2_CLIENT_ID}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/*" element={<Home />} />
