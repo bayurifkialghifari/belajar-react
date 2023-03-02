@@ -1,11 +1,9 @@
 import {
-  Routes, Route, useNavigate
+  Routes, Route
 } from "react-router-dom"
-import lazyLoad from "./lazyLoad"
 import { GoogleOAuthProvider } from '@react-oauth/google'
-
-const Login = lazyLoad('components/Login')
-const Home = lazyLoad('container/Home')
+import Login from './components/Login'
+import Home from './container/Home'
 
 function App() {
   return (
