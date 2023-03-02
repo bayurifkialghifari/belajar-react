@@ -18,14 +18,14 @@ const Login = () => {
       picture,
       sub
     } = decoded
-    
+
     // Save decoded data
     localStorage.setItem('user', JSON.stringify(decoded))
   
     const doc = {
       _id: sub,
       _type: 'user',
-      userNmae: name,
+      userName: name,
       image: picture,
     }
   
