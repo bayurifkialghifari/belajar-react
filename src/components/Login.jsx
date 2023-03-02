@@ -1,11 +1,41 @@
 import { GoogleLogin, googleLogout } from "@react-oauth/google"
-import { createOrGetUser } from "../utils"
 import { useNavigate } from "react-router-dom"
+import { client } from "../client"
+import jwt_decode from "jwt-decode"
 import shareVideo from "../assets/share.mp4"
 import logo from "../assets/logowhite.png"
 
 const Login = () => {
   const user = false;
+  const navigate = useNavigate()
+
+  // Create or get user
+  const createOrGetUser = async (response) => {
+    const decoded = jwt_decode(response.credential)
+    const {
+      name,
+      email,
+      picture,
+      sub
+    } = decoded
+    
+    // Save decoded data
+    localStorage.setItem('user', JSON.stringify(decoded))
+  
+    const doc = {
+      _id: sub,
+      _type: 'user',
+      userNmae: name,
+      image: picture,
+    }
+  
+    // Create user if not exists
+    client.createIfNotExists(doc)
+      .then(() => {
+        navigate('/ggwp', { replace: true })
+    })
+  }
+
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">
